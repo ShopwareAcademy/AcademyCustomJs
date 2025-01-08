@@ -1,23 +1,28 @@
-import {expect, test} from './BaseTestFile';
+import { expect, test } from './BaseTestFile';
 
-function wait(ms: number): Promise<void> {
-    return new Promise(resolve => setTimeout(resolve, ms));
-}
+test('Plugin scroll to bottom scenario.', async ({ page, DefaultSalesChannel }) => {
+  // Open the product detail page
+  await page.goto(`${DefaultSalesChannel.url}`);
 
-test('Plugin test scenario.', async ({page, DefaultSalesChannel}) => {
+  // Listen for the alert dialog and handle it if it appears
+  const dialogPromise = page.waitForEvent('dialog').then(async dialog => {
+    const message = dialog.message();
+    console.log('Dialog message:', message); // Log the dialog message for debugging
 
-    // Open the product detail page
-    await page.goto(`${DefaultSalesChannel.url}`);
-
-  // Listen for the alert dialog
-  page.on('dialog', async dialog => {
-    expect(dialog.message()).toBe("Seems like there's nothing more to see here.");
-    await dialog.dismiss();
+    if (message !== "Seems like there is nothing more to see here.") {
+      throw new Error('Visual test(s) have failed - see logs!');
+    }
+    await dialog.dismiss(); // Dismiss the dialog
   });
 
   // Scroll to the bottom of the page
   await page.evaluate(() => window.scrollTo(0, document.body.scrollHeight));
 
-  // Wait for the alert to be shown
-  await page.waitForTimeout(1000); // Adjust the timeout as needed
+  // Wait for either the dialog or timeout
+  await Promise.race([
+    dialogPromise,
+    page.waitForTimeout(2000).then(() => {
+      throw new Error('No dialog appeared');
+    }),
+  ]);
 });

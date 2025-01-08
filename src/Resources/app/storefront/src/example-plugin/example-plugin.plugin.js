@@ -8,7 +8,7 @@ export default class ExamplePlugin extends Plugin {
 
     onScroll() {
         if ((window.innerHeight + window.pageYOffset) >= document.body.offsetHeight) {
-            alert('Seems like there\'s nothing more to see here.');
+            alert('Seems like there is nothing more to see here.');
         }
     }
 }
