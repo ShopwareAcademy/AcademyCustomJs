@@ -2,7 +2,7 @@ import { expect, test } from './BaseTestFile';
 
 test('Plugin scroll to bottom scenario.', async ({ page, DefaultSalesChannel }) => {
   // Open the product detail page
-  await page.goto(`${DefaultSalesChannel.url}`);
+  await page.goto(`http://localhost:8000`);
 
   // Listen for the alert dialog and handle it if it appears
   const dialogPromise = page.waitForEvent('dialog').then(async dialog => {
