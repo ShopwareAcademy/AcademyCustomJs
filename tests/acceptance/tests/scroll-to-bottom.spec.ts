@@ -10,7 +10,7 @@ test('Plugin scroll to bottom scenario.', async ({ page, DefaultSalesChannel }) 
     console.log('Dialog message:', message); // Log the dialog message for debugging
 
     if (message !== "Seems like there is nothing more to see here.") {
-      throw new Error('Visual test(s) have failed - see logs!');
+      throw new Error('Expected dialog message did not appear. Visual test(s) have failed - see logs for details.');
     }
     await dialog.dismiss(); // Dismiss the dialog
   });

@@ -7,7 +7,7 @@ dotenv.config();
 process.env['SHOPWARE_ADMIN_USERNAME'] = process.env['SHOPWARE_ADMIN_USERNAME'] || 'admin';
 process.env['SHOPWARE_ADMIN_PASSWORD'] = process.env['SHOPWARE_ADMIN_PASSWORD'] || 'shopware';
 process.env['MAILPIT_BASE_URL'] = process.env['MAILPIT_BASE_URL'] || 'http://localhost:8025';
-process.env['APP_URL'] = process.env['APP_URL'] ?? 'http://localhost:8000';
+process.env['APP_URL'] = process.env['APP_URL'] || 'http://localhost:8000';
 
 // make sure APP_URL ends with a slash
 process.env['APP_URL'] = process.env['APP_URL'].replace(/\/+$/, '') + '/';
