@@ -2,12 +2,11 @@ import { test } from './BaseTestFile';
 
 test('Plugin scroll to bottom scenario.', async ({ page, DefaultSalesChannel }) => {
   // Open the product detail page
-  await page.goto(process.env.APP_URL);
+  await page.goto('/');
 
   // Listen for the alert dialog and handle it if it appears
   const dialogPromise = page.waitForEvent('dialog').then(async dialog => {
     const message = dialog.message();
-    console.log('Dialog message:', message); // Log the dialog message for debugging
 
     if (message !== "Seems like there is nothing more to see here.") {
       throw new Error('Expected dialog message did not appear. Visual test(s) have failed - see logs for details.');
