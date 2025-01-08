@@ -7,3 +7,4 @@ A plugin which shows how to add custom JavaScript to the Shopware storefront.
 ## Features
 
 - Show alert when scrolling to the bottom of the page
+
