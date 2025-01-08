@@ -9,9 +9,8 @@ on:
     - cron: '0 3 * * *'
 jobs:
   e2etest:
-    uses: Isengo1989/github-actions/.github/workflows/e2e.yml@main
+    uses: shopware/github-actions/.github/workflows/e2e.yml@main
     with:
       extensionName: ${{ github.event.repository.name }}
       e2ePath: tests/acceptance
       e2eTestFramework: playwright
-      shopwareVersion: v6.6.9.0
