@@ -6,4 +6,4 @@ import CustomAddToCartPlugin from './custom-add-to-cart/custom-add-to-cart.plugi
 const PluginManager = window.PluginManager;
 
 PluginManager.register('ExamplePlugin', ExamplePlugin, '[data-example-plugin]');
-// PluginManager.override('AddToCart', CustomAddToCartPlugin, '[data-add-to-cart]');
+PluginManager.override('AddToCart', CustomAddToCartPlugin, '[data-add-to-cart]');
